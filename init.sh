@@ -18,10 +18,7 @@ BPM_VERSION=6.1
 #DataGrid env 
 DEMO_HOME=./target
 DATAGRID_ZIP=jboss-datagrid-6.5.1-server.zip
-DATAGRID_HOME=$DEMO_HOME/TODO-ADD-DATAGRID-DIR
-DATAGRID_PROJECT=projects/TODO-ADD-UI-PRJ-NAME
-DATAGRID_SERVER_CONF=$DATAGRID_HOME/etc
-DATAGRID_SERVER_SYSTEM=$DATAGRID_HOME/system
+DATAGRID_HOME=$DEMO_HOME/jboss-datagrid-6.5.1-server
 DATAGRID_SERVER_BIN=$DATAGRID_HOME/bin
 DATAGRID_VERSION=6.5.1
 
@@ -33,26 +30,24 @@ clear
 chmod +x installs/*.zip
 
 echo
-echo "#####################################################################################"
-echo "##                                                                                 ##"   
-echo "##  Setting up the                                                                 ##"
-echo "##                                                                                 ##"   
-echo "##            ${DEMO}                           ##"
-echo "##                                                                                 ##"   
-echo "##                                                                                 ##"   
-echo "##        ####   ####    #   #    ###             #####   #   #   #                ##"
-echo "##        #   #  #   #  # # # #  #         #      #   #  # # # #  #                ##"
-echo "##        ####   ####   #  #  #   ##      ###     #####  #  #  #  #                ##"
-echo "##        #   #  #      #     #     #      #      #   #  #  #  #  #                ##"
-echo "##        ####   #      #     #  ###              #   #  #  #  #  #####            ##"
-echo "##                                                                                 ##"   
-echo "##                                                                                 ##"   
-echo "##  brought to you by,                                                             ##"
-echo "##                     ${AUTHORS}                              ##"
-echo "##                                                                                 ##"   
-echo "##  project: ${PROJECT}          ##"
-echo "##                                                                                 ##"   
-echo "#####################################################################################"
+echo "########################################################################################"
+echo "##                                                                                    ##"   
+echo "##  Setting up the                                                                    ##"
+echo "##                                                                                    ##"   
+echo "##            ${DEMO}                              ##"
+echo "##                                                                                    ##"   
+echo "##   ####  ####   #   #   ###       ####   ###  #####  ###   #### ##### ##### ####    ##"
+echo "##   #   # #   # # # # # #      #   #   # #   #   #   #   # #     #   #   #   #   #   ##"
+echo "##   ####  ####  #  #  #  ##   ###  #   # #####   #   ##### #  ## #####   #   #   #   ##"
+echo "##   #   # #     #     #    #   #   #   # #   #   #   #   # #   # #  #    #   #   #   ##"
+echo "##   ####  #     #     # ###        ####  #   #   #   #   #  #### #   # ##### ####    ##"
+echo "##                                                                                    ##"   
+echo "##  brought to you by,                                                                ##"
+echo "##                     ${AUTHORS}                                 ##"
+echo "##                                                                                    ##"   
+echo "##  project: ${PROJECT}             ##"
+echo "##                                                                                    ##"   
+echo "########################################################################################"
 echo
 
 command -v mvn -q >/dev/null 2>&1 || { echo >&2 "Maven is required but not installed yet... aborting."; exit 1; }
@@ -118,6 +113,21 @@ if [ $? -ne 0 ]; then
 	exit
 fi
 
+# Start DataGrid installation
+if [ -x target ]; then
+  # Unzip the JBoss DataGrid instance.
+	echo
+  echo Installing JBoss DataGrid $DATAGRID_VERSION
+  echo
+  unzip -q -d target $SRC_DIR/$DATAGRID_ZIP
+else
+	echo
+	echo Missing target directory, stopping installation.
+	echo 
+	exit
+fi
+
+echo
 echo "  - enabling demo accounts role setup in application-roles.properties file..."
 echo
 cp $SUPPORT_DIR/application-roles.properties $SERVER_CONF
@@ -136,6 +146,7 @@ mvn clean install -f $PRJ_DIR/pom.xml
 #echo
 #cp -r $PRJ_DIR/external-client-ui-form/target/external-client-ui-form-1.0.war $SERVER_DIR/
 
+echo
 echo "  - setting up standalone.xml configuration adjustments..."
 echo
 cp $SUPPORT_DIR/standalone.xml $SERVER_CONF
@@ -154,33 +165,21 @@ cp $SUPPORT_DIR/userinfo.properties $SERVER_DIR/business-central.war/WEB-INF/cla
 #cp $SUPPORT_DIR/1000_jbpm_demo_h2.sql $SERVER_DIR/dashbuilder.war/WEB-INF/etc/sql
 #echo
 
-
-
-# Start DataGrid installation
-if [ -x target ]; then
-  # Unzip the JBoss DataGrid instance.
-	echo
-  echo Installing JBoss DataGrid $DATAGRID_VERSION
-  echo
-  unzip -q -d target $SRC_DIR/$DATAGRID_ZIP
-else
-	echo
-	echo Missing target directory, stopping installation.
-	echo 
-	exit
-fi
-
 echo
-echo "==========================================================================================="
-echo "=                                                                                         ="
-echo "=  You can now start the JBoss BPM Suite with:                                            ="
-echo "=                                                                                         ="
-echo "=        $SERVER_BIN/standalone.sh                                         ="
-echo "=                                                                                         ="
-echo "=    - login, build and deploy JBoss BPM Suite process project at:                        ="
-echo "=                                                                                         ="
-echo "=        http://localhost:8080/business-central (u:erics/p:bpmsuite1!)                    ="
-echo "=                                                                                         ="
-echo "=   $DEMO Setup Complete.                 ="
-echo "==========================================================================================="
+echo "===================================================================================================="
+echo "=                                                                                                  ="
+echo "=  You can now start the JBoss BPM Suite with:                                                     ="
+echo "=                                                                                                  ="
+echo "=        $SERVER_BIN/standalone.sh                                                  ="
+echo "=                                                                                                  ="
+echo "=    - login, build and deploy JBoss BPM Suite process project at:                                 ="
+echo "=                                                                                                  ="
+echo "=        http://localhost:8080/business-central (u:erics/p:bpmsuite1!)                             ="
+echo "=                                                                                                  ="
+echo "=  You can now start the JBoss Data Grid with:                                                     ="
+echo "=                                                                                                  ="
+echo "=   $DATAGRID_SERVER_BIN/standalone.sh -Djboss.socket.binding.port-offset=100  ="
+echo "=                                                                                                  ="
+echo "=   $DEMO Setup Complete.                                     ="
+echo "===================================================================================================="
 echo
