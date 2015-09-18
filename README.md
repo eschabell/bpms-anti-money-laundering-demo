@@ -12,9 +12,11 @@ Install on your machine
 
 3. Run 'init.sh' file.
 
-4. Start the JBoss BPM Suite server, login, build and deploy JBoss BPM Suite process project at http://localhost:8080/business-central (u:erics/p:bpmsuite1!).
+4. Start the JBoss Data Grid sever with port offset, -Djboss.socket.binding.port-offset=100.
 
-5. Enjoy the demo!
+5. Start the JBoss BPM Suite server, login, build and deploy JBoss BPM Suite process project at http://localhost:8080/business-central (u:erics/p:bpmsuite1!).
+
+6. Enjoy the demo!
 
 
 TODO: Running an instance that triggers money laundering warning in system.
