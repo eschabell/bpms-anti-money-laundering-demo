@@ -6,7 +6,7 @@ using rules, events, data grid and processes.
 
 Install on your machine
 -----------------------
-1. [Download and unzip.](https://github.com/eschabel/bpms-anti-money-laundering-demo/archive/master.zip)
+1. [Download and unzip.](https://github.com/eschabell/bpms-anti-money-laundering-demo/archive/master.zip)
 
 2. Add products to installs directory.
 
