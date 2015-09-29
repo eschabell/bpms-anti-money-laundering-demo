@@ -48,7 +48,7 @@ Released versions
 -----------------
 See the tagged releases for the following versions of the product:
 
-- v1.0 - JBoss BPM Suite 6.1 and JBoss Data Grid 6.5.1 with anit money laundering application installed.
+- v1.0 - JBoss BPM Suite 6.1 and JBoss Data Grid 6.5.1 with anti money laundering application installed.
 
 ![BPM Suite BAM](https://raw.githubusercontent.com/eschabell/bpms-anti-money-laundering-demo/master/docs/demo-images/mock-bpm-data.png?raw=true)
 
