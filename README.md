@@ -41,7 +41,7 @@ TODO: Running an instance that triggers money laundering warning in system.
 
 Supporting Articles
 -------------------
-Coming soon...
+- [7 Steps to Your First Process with JBoss BPM Suite Starter	Kit](http://www.schabell.org/2015/08/7-steps-first-process-jboss-bpmsuite-starter-kit.html)
 
 
 Released versions
