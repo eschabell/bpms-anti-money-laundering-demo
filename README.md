@@ -1,3 +1,6 @@
+Update: June 2018 moved to [Gitlab](https://gitlab.com/eschabell/bpms-anti-money-laundering-demo)
+
+
 JBoss BPM Suite Anti Money Laundering Demo
 ==========================================
 Demo based on JBoss BPM Suite and JBoss Data Grid products showcasing an anti money laundering warning system
